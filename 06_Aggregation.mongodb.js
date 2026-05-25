@@ -52,17 +52,11 @@ db.sales.aggregate([
 // In this example, the $group stage groups the documents by the category field and calculates the total sales for each category as before. The $sort stage then sorts the output in descending order based on the totalSales field, allowing you to see which category has the highest total sales at the top of the results.
 
 
-// Question no 1: is mongodb aggregation pipeline is faster than writing a simple javascript and python code to do the same thing?
 
-// Yes, MongoDB's aggregation pipeline is generally faster than writing a simple JavaScript or Python code to perform the same data processing tasks. This is because the aggregation pipeline is optimized for performance and runs directly within the MongoDB server, allowing it to take advantage of indexes and other optimizations. In contrast, writing custom code in JavaScript or Python would require fetching the data from the database and processing it in memory, which can be slower, especially for large datasets. Therefore, using the aggregation pipeline is often more efficient for data aggregation and transformation tasks in MongoDB.
-//in mongodb aggregation pipeline is a powerful framework for data aggregation and transformation. It allows you to process and analyze data in a collection by applying a series of stages, each performing a specific operation on the data. The stages are executed in sequence, and the output of one stage serves as the input for the next stage.
-
-
-
-// db.sales.aggregate([
-//     {$group: {_id: "$category"}
-//       }
-// ])
+db.sales.aggregate([
+    {$group: {_id: "$category"}
+      }
+])
 //shows all category in sales collection without duplicates because of group stage and _id is used to group the documents by the category field. The output will include the unique categories present in the sales collection.
 
 
@@ -74,5 +68,12 @@ db.sales.aggregate([
     }
 ]);
 // In this example, the $match stage filters the documents to include only those where the category is "Fruit". The $group stage then calculates the total sales for fruits by summing the product of price and quantity for all documents in that category. The _id is set to null because we are not grouping by any specific field, and the output will include a single document with the total sales for fruits.
+
+
+// Question no 1: is mongodb aggregation pipeline is faster than writing a simple javascript and python code to do the same thing?
+
+// Yes, MongoDB's aggregation pipeline is generally faster than writing a simple JavaScript or Python code to perform the same data processing tasks. This is because the aggregation pipeline is optimized for performance and runs directly within the MongoDB server, allowing it to take advantage of indexes and other optimizations. In contrast, writing custom code in JavaScript or Python would require fetching the data from the database and processing it in memory, which can be slower, especially for large datasets. Therefore, using the aggregation pipeline is often more efficient for data aggregation and transformation tasks in MongoDB.
+
+//in mongodb aggregation pipeline is a powerful framework for data aggregation and transformation. It allows you to process and analyze data in a collection by applying a series of stages, each performing a specific operation on the data. The stages are executed in sequence, and the output of one stage serves as the input for the next stage.
 
 
